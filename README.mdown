@@ -1,0 +1,32 @@
+# mzevents - Event pages for Mezzanine
+
+*This is pre-release software, not really intended for public use. (For instance, the URL `sbtc.org.au` is still hard coded :S)*
+
+This plugin gives you an "Event" page type for your Mezzanine sites, with automagic "Add to Google Calendar" and "Add to Outlook" links.
+
+## Usage
+
+### Event Container pages
+
+Event Container is the page type for what might be the "Event" page to your visitors. It's typically a list of events.
+
+Iterate over `page.children.all` in your template to generate your event list.
+
+### Event pages
+
+Event pages describe a single event, and are normally a sub-page of an EventContainer. They have the following attributes and methods, accessible via templates:
+
+* `date`, `start_time`, `end_time`
+*
+
+Event pages default to being not visible in navigation.
+
+## License
+
+Copyright (C) 2012 St Barnabas Theological College
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
