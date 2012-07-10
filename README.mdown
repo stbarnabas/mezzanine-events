@@ -1,8 +1,8 @@
-# mzevents - Event pages for Mezzanine
+# Event pages for the Mezzanine CMS
 
-*This is pre-release software, not really intended for public use. (For instance, the URL `sbtc.org.au` is still hard coded :S)*
+*This is pre-release software, not really ready for public use just yet! (For instance, the URL `sbtc.org.au` is still hard coded :S)*
 
-This plugin gives you an "Event" page type for your Mezzanine sites, with automagic "Add to Google Calendar" and "Add to Outlook" links.
+This plugin gives you an "Event" page type for your Mezzanine sites, with automagic "Add to Google Calendar", "Add to Outlook" and "Get Directions" links.
 
 ## Usage
 
@@ -17,9 +17,18 @@ Iterate over `page.children.all` in your template to generate your event list.
 Event pages describe a single event, and are normally a sub-page of an EventContainer. They have the following attributes and methods, accessible via templates:
 
 * `date`, `start_time`, `end_time`
-*
+* TODO: continue this
 
 Event pages default to being not visible in navigation.
+
+## To Do
+
+* Change hard-coded domains to Site object lookups
+* Change hard-coded UTC offset to time zone setting
+* Move some of the functions on the event model into template tags
+* Update hide-from-navigation code
+* Add google navigation link template tag
+* Move google maps domain
 
 ## License
 
