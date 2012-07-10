@@ -5,6 +5,10 @@ setup(name='mezzanine-events',
 	description='Event pages for the Mezzanine CMS',
 	author='Adam Brenecki',
 	author_email='abrenecki@sbtc.org.au',
-	url='',
-	packages=['mezzanine_events'],
+	url='https://github.com/stbarnabas/mezzanine-events',
+	packages=[
+		'mezzanine_events',
+		'mezzanine_events.migrations',
+		'mezzanine_events.templatetags',
+	],
 )
