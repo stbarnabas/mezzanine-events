@@ -28,7 +28,6 @@ Event pages default to being not visible in navigation.
 
 ## To Do
 
-* Change hard-coded domains to Site object lookups
 * Change hard-coded UTC offset to time zone setting
 * Move some of the functions on the event model into template tags
 * Update hide-from-navigation code
