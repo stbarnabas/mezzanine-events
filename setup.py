@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='mezzanine-events',
 	version='0.1pre',
@@ -11,4 +11,7 @@ setup(name='mezzanine-events',
 		'mezzanine_events.migrations',
 		'mezzanine_events.templatetags',
 	],
+	install_requires=[
+		'icalendar==3.0.1b2'
+	]
 )
