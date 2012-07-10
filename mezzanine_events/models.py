@@ -7,8 +7,12 @@ from geopy.geocoders.google import GQueryError
 from django.contrib.sites.models import Site
 from urllib import quote
 from datetime import timedelta, datetime as dt
+from mezzanine.utils.sites import current_site_id
 
 UTC_DELTA = timedelta(hours=9, minutes=30)
+
+def _get_current_domain():
+	return Site.objects.get(id=current_site_id()).domain
 
 class Event(Page, RichText):
 	date = models.DateField()
@@ -31,17 +35,17 @@ class Event(Page, RichText):
 		return dt.combine(self.date, self.end_time)
 
 	def build_webcal_url(self):
-		return "webcal://"+Site.objects.get_current().domain+self.get_absolute_url()+"event.ics"
+		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
 
 	def build_icalendar_url(self):
-		return "http://"+Site.objects.get_current().domain+self.get_absolute_url()+"event.ics"
+		return "http://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
 
 	def build_google_calendar_url(self):
 		# from sbtc.events.models import Event; Event.objects.all()[0].build_google_calendar_url()
 		title = quote(self.title)
 		start_date = (self.start_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
 		end_date = (self.end_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
-		url = Site.objects.get_current().domain+self.get_absolute_url()
+		url = _get_current_domain() + self.get_absolute_url()
 		location = quote(self.mappable_location)
 		return "http://www.google.com/calendar/event?action=TEMPLATE&text={title}&dates={start_date}/{end_date}&sprop=website:{url}&location={location}&trp=true".format(**locals())
 
