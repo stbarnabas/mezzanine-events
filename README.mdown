@@ -4,6 +4,11 @@
 
 This plugin gives you an "Event" page type for your Mezzanine sites, with automagic "Add to Google Calendar", "Add to Outlook" and "Get Directions" links.
 
+## Installation
+
+* Add `"mezzanine_events"` to your `INSTALLED_APPS`
+* Add `("^", include("mezzanine_events.urls"))` to your `urls.py` (this is so that mezzanine-events can serve up iCalendar files).
+
 ## Usage
 
 ### Event Container pages
