@@ -82,3 +82,9 @@ class EventContainer (Page):
 	hide_children = models.BooleanField(default=True, verbose_name="Hide events in this container from navigation")
 	class Meta:
 		verbose_name = "Event Container"
+
+	def build_webcal_url(self):
+		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
+
+	def build_icalendar_url(self):
+		return "http://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
