@@ -84,7 +84,7 @@ class EventContainer (Page):
 		verbose_name = "Event Container"
 
 	def build_webcal_url(self):
-		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
+		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "calendar.ics"
 
 	def build_icalendar_url(self):
-		return "http://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
+		return "http://" + _get_current_domain() + self.get_absolute_url() + "calendar.ics"
