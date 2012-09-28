@@ -1,4 +1,5 @@
 from setuptools import setup
+import os
 
 setup(name='mezzanine-events',
 	version='0.1pre',
@@ -6,11 +7,9 @@ setup(name='mezzanine-events',
 	author='Adam Brenecki',
 	author_email='abrenecki@sbtc.org.au',
 	url='https://github.com/stbarnabas/mezzanine-events',
-	packages=[
-		'mezzanine_events',
-		'mezzanine_events.migrations',
-		'mezzanine_events.templatetags',
-	],
+	packages=['.'.join(i[0].split(os.sep))
+		for i in os.walk('mezzanine_events')
+		if '__init__.py' in i[2]],
 	install_requires=[
 		'icalendar==3.0.1b2'
 	]
