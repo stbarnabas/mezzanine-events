@@ -9,23 +9,21 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 * Show your visitors where to go
 	* Embed a map of the location in one line of code with the Google Static Maps template tag
 	* Provide a "Get Directions" link so users can go there in one click
-* Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with GCal template URLs, iCalendar and webcal:// support
+* Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with Google Calendar and webcal:// URLs and iCalendar download files
 * The usual stuff - dates, times, speakers, rsvp
 
 ## Installation
 
+* Run `pip install https://github.com/stbarnabas/mezzanine-events/tarball/master` (or, if you want to hack on mezzanine-events, clone it and run `pip install -e path/to/repo`)
 * Add `"mezzanine_events"` to your `INSTALLED_APPS`
 * Add `("^", include("mezzanine_events.urls"))` to your `urls.py` (this is so that mezzanine-events can serve up iCalendar files).
+* Migrate your database
 
 ## Usage
 
-mezzanine-events provides two page types: EventContainer and Event. The EventContainer page type is the 'Events' page on your website; you'll probably want it to have a list of events. The Event page type represents a single event.
+mezzanine-events provides two page types: EventContainer and Event. The EventContainer page type is the 'Events' page on your website; you'll probably want it to have a list of events. The Event page type represents a single event. Event pages are designed to be sub-pages of EventContainer pages.
 
-### Event Container pages
-
-Event Container is the page type for what might be the "Event" page to your visitors. It's typically a list of events.
-
-Iterate over `page.children.all` in your template to generate your event list.
+## Creating Templates
 
 ### Event pages
 
@@ -35,6 +33,10 @@ Event pages describe a single event, and are normally a sub-page of an EventCont
 * TODO: continue this
 
 Event pages default to being not visible in navigation.
+
+### Event Container pages
+
+Iterate over `page.children.all` in your template to generate your event list. This will produce the same Event objects that 
 
 ## Settings
 

@@ -1,0 +1,49 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags event %}
+
+{% block main %}{{ block.super }}
+
+<div style="float:right;">
+	<a href='{{page.event|google_calendar_url}}' target="_blank" class="btn btn-small">
+		Add to Google Calendar
+	</a>
+	<a href='{{page.event|icalendar_url}}' class="btn btn-small">
+		Add to Outlook/iCal
+	</a>
+</div>
+
+<p class='lead'>
+	{{page.event.date}} from {{page.event.start_time}} to {{page.event.end_time}}
+</p>
+
+<div class="row-fluid">
+	<div class="span4">
+		<b>Address</b>
+		<address>
+			{{page.event.location|linebreaksbr}}
+		</address>
+	</div>
+	<div class="span4">
+		<b>Speakers</b>
+		<address>
+			<ul>
+				{% for speaker in page.event.speakers_list %}
+					<li>{{speaker}}</li>
+				{% endfor %}
+			</ul>
+		</address>
+	</div>
+	<div class="span4">
+		<b>RSVP</b>
+		<p>
+			{{page.event.rsvp|linebreaksbr|link_emails}}
+		</p>
+	</div>
+</div>
+
+{{page.event.description|linebreaks}}
+
+{% google_static_map page.event 670 150 10 %}
+
+{% endblock %}
