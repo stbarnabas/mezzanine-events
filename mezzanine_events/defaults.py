@@ -6,3 +6,10 @@ register_setting(
 	editable=True,
 	default="maps.google.com.au",
 )
+
+register_setting(
+	name="MZEVENTS_HIDPI_STATIC_MAPS",
+	description="Generate maps suitable for Retina displays",
+	editable=True,
+	default=True,
+)
