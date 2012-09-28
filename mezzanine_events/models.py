@@ -25,7 +25,7 @@ class Event(Page, RichText):
 	lon = models.DecimalField(max_digits=10, decimal_places=7, blank=True, null=True, verbose_name="Longitude", help_text="Calculated automatically if mappable location is set.")
 	rsvp = models.TextField(blank=True, help_text="RSVP information. Leave blank if not relevant. Emails will be converted into links.")
 
-	def speakers_dict(self):
+	def speakers_list(self):
 		return [x for x in self.speakers.split("\n") if x.strip() != ""]
 
 	def start_datetime(self):
@@ -33,22 +33,6 @@ class Event(Page, RichText):
 
 	def end_datetime(self):
 		return dt.combine(self.date, self.end_time)
-
-	def build_webcal_url(self):
-		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
-
-	def build_icalendar_url(self):
-		return "http://" + _get_current_domain() + self.get_absolute_url() + "event.ics"
-
-	def build_google_calendar_url(self):
-		# from sbtc.events.models import Event; Event.objects.all()[0].build_google_calendar_url()
-		title = quote(self.title)
-		start_date = (self.start_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
-		end_date = (self.end_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
-		url = _get_current_domain() + self.get_absolute_url()
-		location = quote(self.mappable_location)
-		return "http://www.google.com/calendar/event?action=TEMPLATE&text={title}&dates={start_date}/{end_date}&sprop=website:{url}&location={location}&trp=true".format(**locals())
-
 
 	def clean(self):
 		super(Event, self).clean()
@@ -82,9 +66,3 @@ class EventContainer (Page):
 	hide_children = models.BooleanField(default=True, verbose_name="Hide events in this container from navigation")
 	class Meta:
 		verbose_name = "Event Container"
-
-	def build_webcal_url(self):
-		return "webcal://" + _get_current_domain() + self.get_absolute_url() + "calendar.ics"
-
-	def build_icalendar_url(self):
-		return "http://" + _get_current_domain() + self.get_absolute_url() + "calendar.ics"
