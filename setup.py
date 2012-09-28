@@ -11,6 +11,7 @@ setup(name='mezzanine-events',
 		for i in os.walk('mezzanine_events')
 		if '__init__.py' in i[2]],
 	install_requires=[
-		'icalendar==3.0.1b2'
+		'icalendar==3.0.1b2',
+		'geopy==0.94.2',
 	]
 )
