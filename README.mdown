@@ -2,7 +2,15 @@
 
 *This is pre-release software, not really ready for public use just yet! (For instance, the URL `sbtc.org.au` is still hard coded :S)*
 
-This plugin gives you an "Event" page type for your Mezzanine sites, with automagic "Add to Google Calendar", "Add to Outlook" and "Get Directions" links.
+This plugin gives you an "Event" page type for your Mezzanine sites.
+
+## Features
+
+* Show your visitors where to go
+	* Embed a map of the location in one line of code with the Google Static Maps template tag
+	* Provide a "Get Directions" link so users can go there in one click
+* Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with GCal template URLs, iCalendar and webcal:// support
+* The usual stuff - dates, times, speakers, rsvp
 
 ## Installation
 
@@ -10,6 +18,8 @@ This plugin gives you an "Event" page type for your Mezzanine sites, with automa
 * Add `("^", include("mezzanine_events.urls"))` to your `urls.py` (this is so that mezzanine-events can serve up iCalendar files).
 
 ## Usage
+
+mezzanine-events provides two page types: EventContainer and Event. The EventContainer page type is the 'Events' page on your website; you'll probably want it to have a list of events. The Event page type represents a single event.
 
 ### Event Container pages
 
@@ -29,6 +39,7 @@ Event pages default to being not visible in navigation.
 ## Settings
 
 * `MZEVENTS_GOOGLE_MAPS_DOMAIN` - The Google Maps country domain to query for geocoding. Setting this accurately improves results when users forget to enter a country in the mappable address. Default: `'maps.google.com.au'`.
+" `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones.
 
 ## To Do
 
