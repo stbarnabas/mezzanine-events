@@ -26,6 +26,10 @@ Event pages describe a single event, and are normally a sub-page of an EventCont
 
 Event pages default to being not visible in navigation.
 
+## Settings
+
+* `MZEVENTS_GOOGLE_MAPS_DOMAIN` - The Google Maps country domain to query for geocoding. Setting this accurately improves results when users forget to enter a country in the mappable address. Default: `'maps.google.com.au'`.
+
 ## To Do
 
 * Change hard-coded UTC offset to time zone setting
