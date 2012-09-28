@@ -8,6 +8,7 @@ from django.contrib.sites.models import Site
 from urllib import quote
 from datetime import timedelta, datetime as dt
 from mezzanine.utils.sites import current_site_id
+from mezzanine.conf import settings
 
 UTC_DELTA = timedelta(hours=9, minutes=30)
 
@@ -50,11 +51,11 @@ class Event(Page, RichText):
 			self.mappable_location = self.location.replace("\n",", ")
 
 		if self.mappable_location: #location should always override lat/long if set
-			g = GoogleMaps(domain="maps.google.com.au")
+			g = GoogleMaps(domain=settings.MZEVENTS_GOOGLE_MAPS_DOMAIN)
 			try:
 				location, (lat, lon) = g.geocode(self.mappable_location)
 			except GQueryError as e:
-				raise ValidationError("The mappable location you specified could not be found on {service}: \"{error}\" Try changing the mappable location, removing any businessnames, or leaving mappable location blank and using coordinates from getlatlon.com.".format(service="Google Maps", error=e.message))
+				raise ValidationError("The mappable location you specified could not be found on {service}: \"{error}\" Try changing the mappable location, removing any business names, or leaving mappable location blank and using coordinates from getlatlon.com.".format(service="Google Maps", error=e.message))
 			self.mappable_location = location
 			self.lat = lat
 			self.lon = lon
