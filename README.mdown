@@ -22,7 +22,7 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 
 mezzanine-events provides two page types: "Event Container" and "Event". The Event Container page type is the 'Events' (note plural) page on your website; you'll probably want it to have a list of events. The Event page type represents a single event.
 
-Create an EventContainer page in the Mezzanine admin, then create a 
+Create an Event Container page in the Mezzanine admin (naming it something like "Events"), then create your first Event page inside it (naming it with the name of your event).
 
 ## Creating Templates
 
@@ -49,6 +49,8 @@ Event pages default to being not visible in navigation, unless "show events in n
 
 ### Event Container pages
 
+The template for an Event Container page is `templates/pages/eventcontainer.html`.
+
 Iterate over `page.children.all` to get at the events inside the container. You can then use all of the properties and template tags listed above on these objects.
 
 The template filter `{{ page.eventcontainer|icalendar_url:"webcal" }}` can be used to produce a webcal URL. When a link containing this URL is clicked, the user's default calendaring app will subscribe to events in this eventcontainer.
@@ -62,7 +64,8 @@ In practice, most clients *import* downloaded iCalendar files into an existing c
 ## Settings
 
 * `MZEVENTS_GOOGLE_MAPS_DOMAIN` - The Google Maps country domain to query for geocoding. Setting this accurately improves results when users forget to enter a country in the mappable address. Default: `'maps.google.com.au'`.
-" `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: `True`.
+* `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: `True`.
+* `MZEVENTS_TIME_ZONE` - The time zone that the event dates and times are in. Either this or the `TIME_ZONE` setting needs to be set.
 
 ## To Do
 
