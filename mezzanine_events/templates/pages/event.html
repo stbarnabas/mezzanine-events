@@ -42,7 +42,7 @@
 	</div>
 </div>
 
-{{page.event.description|linebreaks}}
+{{page.event.content|richtext_filter|safe}}
 
 {% google_static_map page.event 670 150 10 %}
 
