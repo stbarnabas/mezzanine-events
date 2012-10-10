@@ -8,7 +8,7 @@ from . import __version__
 def _make_icalendar():
 	ical = ICalendar()
 	ical.add('prodid',
-		'-//St Barnabas TC/mezzanine-events//NONSGML V{}//EN'.format(__version__))
+		'-//St Barnabas Theological College/mezzanine-events//NONSGML V{}//EN'.format(__version__))
 	ical.add('version', '2.0') # version of the format, not the product!
 	return ical
 
