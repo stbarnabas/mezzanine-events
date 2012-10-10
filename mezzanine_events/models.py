@@ -37,9 +37,12 @@ class Event(Page, RichText):
 
 	def clean(self):
 		super(Event, self).clean()
-
-		if not self.parent or (isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children):
+		
+		if (isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children):
+			# older versions
 			self.in_navigation = False
+			# newer versions
+			self.in_menus = ""
 
 		if self.lat and not self.lon:
 			raise ValidationError("Longitude required if specifying latitude.")
