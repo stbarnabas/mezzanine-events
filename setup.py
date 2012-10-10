@@ -1,8 +1,9 @@
 from setuptools import setup
 import os
+from mezzanine_events import __version__
 
 setup(name='mezzanine-events',
-	version='0.1pre',
+	version=__version__,
 	description='Event pages for the Mezzanine CMS',
 	author='Adam Brenecki',
 	author_email='abrenecki@sbtc.org.au',
