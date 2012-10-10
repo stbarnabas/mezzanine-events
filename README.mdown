@@ -1,6 +1,4 @@
-# Event pages for the Mezzanine CMS
-
-*This is pre-release software, not really ready for public use just yet! (For instance, the URL `sbtc.org.au` is still hard coded :S)*
+# mezzanine-events
 
 This plugin gives you an "Event" page type for your Mezzanine sites.
 
@@ -9,7 +7,7 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 * Show your visitors where to go
 	* Embed a map of the location in one line of code with the Google Static Maps template tag
 	* Provide a "Get Directions" link so users can go there in one click
-* Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with Google Calendar and webcal:// URLs and iCalendar download files
+* Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with Google Calendar and webcal:// URLs and iCalendar files
 * The usual stuff - dates, times, speakers, rsvp
 
 ## Installation
@@ -22,34 +20,54 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 
 ## Usage
 
-mezzanine-events provides two page types: EventContainer and Event. The EventContainer page type is the 'Events' page on your website; you'll probably want it to have a list of events. The Event page type represents a single event. Event pages are designed to be sub-pages of EventContainer pages.
+mezzanine-events provides two page types: "Event Container" and "Event". The Event Container page type is the 'Events' (note plural) page on your website; you'll probably want it to have a list of events. The Event page type represents a single event.
+
+Create an EventContainer page in the Mezzanine admin, then create a 
 
 ## Creating Templates
 
 ### Event pages
 
-Event pages describe a single event, and are normally a sub-page of an EventContainer. They have the following attributes and methods, accessible via templates:
+The template for an Event page is `templates/pages/event.html`.
 
-* `date`, `start_time`, `end_time`
-* TODO: continue this
+The Event object is available at `page.event`. It has the following properties:
 
-Event pages default to being not visible in navigation.
+* Dates and times: `date`, `start_time`, `end_time`
+* Location info: `location`, `mappable_location`, `lat`, `lon`
+* Text data: `speakers`, `rsvp`
+* `speakers_list` - the speakers as a list you can iterate over
+* Generated start and end datetimes at `start_datetime` and `end_datetime`
+
+The following template tags and filters can be used:
+
+- `{{ page.event.rsvp|link_emails }}` - Wraps anything that looks like an email in a `mailto:` link.
+- `{{ page.event|google_calendar_url }}` - Returns a Google Calendar template URL. Google Calendar users can click a link to this URL to add the event to their calendar.
+- `{{ page.event|icalendar_url }}` - Returns the URL to an iCalendar file containing this event. Upon downloading this file, most calendar software including Outlook and iCal will handle this by adding it to their calendars.
+- `{{ google_static_map page.event <width> <height> <zoom> }}` - Produces a Google static map centred around the event location, zoomed to the specified level. Produces the entire `img` tag, not just the URL.
+
+Event pages default to being not visible in navigation, unless "show events in navigation" is checked in their parent EventContainer.
 
 ### Event Container pages
 
-Iterate over `page.children.all` in your template to generate your event list. This will produce the same Event objects that 
+Iterate over `page.children.all` to get at the events inside the container. You can then use all of the properties and template tags listed above on these objects.
+
+The template filter `{{ page.eventcontainer|icalendar_url:"webcal" }}` can be used to produce a webcal URL. When a link containing this URL is clicked, the user's default calendaring app will subscribe to events in this eventcontainer.
+
+### Notes
+
+The `icalendar_url` template filter actually takes one optional, arbitrary string argument that specifies the protocol to use in the URL it gives, defaulting to `http`. This means that you can generate `webcal` URLs for single events and downloadable `.ics` files for event containers.
+
+In practice, most clients *import* downloaded iCalendar files into an existing calendar, and add webcal URLs as a *separate calendar*, so the behaviour described above is usually the desired one.
 
 ## Settings
 
 * `MZEVENTS_GOOGLE_MAPS_DOMAIN` - The Google Maps country domain to query for geocoding. Setting this accurately improves results when users forget to enter a country in the mappable address. Default: `'maps.google.com.au'`.
-" `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones.
+" `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: `True`.
 
 ## To Do
 
 * Move some of the functions on the event model into template tags
-* Update hide-from-navigation code
 * Add google navigation link template tag
-* Move google maps domain
 
 ## License
 
