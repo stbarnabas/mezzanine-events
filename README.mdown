@@ -17,6 +17,7 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 * Run `pip install https://github.com/stbarnabas/mezzanine-events/tarball/master` (or, if you want to hack on mezzanine-events, clone it and run `pip install -e path/to/repo`)
 * Add `"mezzanine_events"` to your `INSTALLED_APPS`
 * Add `("^", include("mezzanine_events.urls"))` to your `urls.py` (this is so that mezzanine-events can serve up iCalendar files).
+* Set either the `TIME_ZONE` or `MZEVENTS_TIME_ZONE` settings. (If neither of these settings are set, the Google Calendar links will not work as expected.)
 * Migrate your database
 
 ## Usage
@@ -45,7 +46,6 @@ Iterate over `page.children.all` in your template to generate your event list. T
 
 ## To Do
 
-* Change hard-coded UTC offset to time zone setting
 * Move some of the functions on the event model into template tags
 * Update hide-from-navigation code
 * Add google navigation link template tag

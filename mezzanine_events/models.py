@@ -10,8 +10,6 @@ from datetime import timedelta, datetime as dt
 from mezzanine.utils.sites import current_site_id
 from mezzanine.conf import settings
 
-UTC_DELTA = timedelta(hours=9, minutes=30)
-
 def _get_current_domain():
 	return Site.objects.get(id=current_site_id()).domain
 

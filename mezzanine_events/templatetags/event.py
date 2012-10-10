@@ -1,7 +1,8 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 import re
-from ..models import _get_current_domain, UTC_DELTA, Event, EventContainer
+from ..models import _get_current_domain, Event, EventContainer
+from ..lib import get_utc
 from urllib import quote
 from mezzanine.conf import settings
 
@@ -19,8 +20,8 @@ def google_calendar_url(event):
 	if not isinstance(event, Event):
 		return ''
 	title = quote(event.title)
-	start_date = (event.start_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
-	end_date = (event.end_datetime() - UTC_DELTA).strftime("%Y%m%dT%H%M%SZ")
+	start_date = get_utc(event.start_datetime()).strftime("%Y%m%dT%H%M%SZ")
+	end_date = get_utc(event.end_datetime()).strftime("%Y%m%dT%H%M%SZ")
 	url = _get_current_domain() + event.get_absolute_url()
 	location = quote(event.mappable_location)
 	return "http://www.google.com/calendar/event?action=TEMPLATE&text={title}&dates={start_date}/{end_date}&sprop=website:{url}&location={location}&trp=true".format(**locals())
