@@ -35,17 +35,6 @@ class Event(Page, RichText):
 
 	def clean(self):
 		super(Event, self).clean()
-		
-		hide_page = False
-		
-		if self.parent is not None:
-			hide_page = isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children
-		
-		if hide_page:
-			# older versions
-			self.in_navigation = False
-			# newer versions
-			self.in_menus = ""
 
 		if self.lat and not self.lon:
 			raise ValidationError("Longitude required if specifying latitude.")
@@ -65,6 +54,22 @@ class Event(Page, RichText):
 			self.mappable_location = location
 			self.lat = lat
 			self.lon = lon
+		
+	def save(self, *args, **kwargs):
+		# determine whether the page needs to be hidden
+		# this has to be done here because we don't have access to the parent in clean()
+		hide_page = False
+				
+		if self.parent is not None:
+			hide_page = isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children
+		
+		if hide_page:
+			# older versions
+			self.in_navigation = False
+			# newer versions
+			self.in_menus = ""
+		
+		super(Event, self).save(*args, **kwargs)
 
 	class Meta:
 		verbose_name = "Event"
