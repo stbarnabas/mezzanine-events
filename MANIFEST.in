@@ -1,0 +1,2 @@
+include README.mdown
+recursive-include mezzanine_events/templates *.html

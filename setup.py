@@ -20,6 +20,12 @@ setup(name='mezzanine-events',
 	packages=['.'.join(i[0].split(os.sep))
 		for i in os.walk('mezzanine_events')
 		if '__init__.py' in i[2]],
+	package_dir={'.'.join(i[0].split(os.sep)): i[0]
+		for i in os.walk('mezzanine_events')
+		if '__init__.py' in i[2]},
+	package_data={
+		'mezzanine_events': ['templates/**'],
+	},
 	install_requires=[
 		'icalendar==3.0.1b2',
 		'geopy==0.94.2',
