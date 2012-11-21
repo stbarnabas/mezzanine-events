@@ -12,6 +12,11 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 
 ## Screenshots
 
+These screenshots show what the plugin looks like with the default templates. To see it in action with custom templates, look at the [Events page of the St Barnabas' website](http://www.sbtc.org.au/events/).
+
+- [An event container containing one event](https://raw.github.com/stbarnabas/mezzanine-events/master/screenshots/eventcontainer.png)
+- [An example event page](https://raw.github.com/stbarnabas/mezzanine-events/master/screenshots/event.png)
+
 ## Installation
 
 * Run `pip install https://github.com/stbarnabas/mezzanine-events/tarball/master` (or, if you want to hack on mezzanine-events, clone it and run `pip install -e path/to/repo`)
