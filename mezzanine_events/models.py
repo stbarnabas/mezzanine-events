@@ -36,7 +36,12 @@ class Event(Page, RichText):
 	def clean(self):
 		super(Event, self).clean()
 		
-		if (isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children):
+		hide_page = False
+		
+		if self.parent is not None:
+			hide_page = isinstance(self.parent.get_content_model(), EventContainer) and self.parent.get_content_model().hide_children
+		
+		if hide_page:
 			# older versions
 			self.in_navigation = False
 			# newer versions
