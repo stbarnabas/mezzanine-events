@@ -75,11 +75,6 @@ In practice, most clients *import* downloaded iCalendar files into an existing c
 * `MZEVENTS_HIDPI_STATIC_MAPS` - Whether the `{% google_static_map %}` template tag generates a map suitable for high DPI displays such as the MacBook Pro with Retina Display and many newer smartphones. Default: `True`.
 * `MZEVENTS_TIME_ZONE` - The time zone that the event dates and times are in. Either this or the `TIME_ZONE` setting needs to be set.
 
-## To Do
-
-* Move some of the functions on the event model into template tags
-* Add google navigation link template tag
-
 ## License
 
 Copyright (C) 2012 St Barnabas Theological College
