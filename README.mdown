@@ -10,6 +10,8 @@ This plugin gives you an "Event" page type for your Mezzanine sites.
 * Let your visitors add a single event or subscribe to all future events in Google Calendar, Outlook, iCal and more with Google Calendar and webcal:// URLs and iCalendar files
 * The usual stuff - dates, times, speakers, rsvp
 
+## Screenshots
+
 ## Installation
 
 * Run `pip install https://github.com/stbarnabas/mezzanine-events/tarball/master` (or, if you want to hack on mezzanine-events, clone it and run `pip install -e path/to/repo`)
@@ -43,6 +45,7 @@ The following template tags and filters can be used:
 - `{{ page.event.rsvp|link_emails }}` - Wraps anything that looks like an email in a `mailto:` link.
 - `{{ page.event|google_calendar_url }}` - Returns a Google Calendar template URL. Google Calendar users can click a link to this URL to add the event to their calendar.
 - `{{ page.event|icalendar_url }}` - Returns the URL to an iCalendar file containing this event. Upon downloading this file, most calendar software including Outlook and iCal will handle this by adding it to their calendars.
+- `{{ page.event|google_nav_url }}` - Returns the URL to a page on Google Maps showing the location .
 - `{{ google_static_map page.event <width> <height> <zoom> }}` - Produces a Google static map centred around the event location, zoomed to the specified level. Produces the entire `img` tag, not just the URL.
 
 Event pages default to being not visible in navigation, unless "show events in navigation" is checked in their parent EventContainer.

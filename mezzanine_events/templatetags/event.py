@@ -26,6 +26,13 @@ def google_calendar_url(event):
 	location = quote(event.mappable_location)
 	return "http://www.google.com/calendar/event?action=TEMPLATE&text={title}&dates={start_date}/{end_date}&sprop=website:{url}&location={location}&trp=true".format(**locals())
 
+@register.filter(is_safe=True)
+def google_nav_url(event):
+	if not isinstance(event, Event):
+		return ''
+	location = quote(event.mappable_location)
+	return "https://{}/maps?daddr={}".format(settings.MZEVENTS_GOOGLE_MAPS_DOMAIN, location)
+
 @register.tag
 def google_static_map(parser, token):
 	try:
