@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import os
 from mezzanine_events import __version__
 import subprocess
@@ -17,15 +17,11 @@ setup(name='mezzanine-events',
 	author='Adam Brenecki',
 	author_email='abrenecki@sbtc.org.au',
 	url='https://github.com/stbarnabas/mezzanine-events',
-	packages=['.'.join(i[0].split(os.sep))
-		for i in os.walk('mezzanine_events')
-		if '__init__.py' in i[2]],
-	package_dir={'.'.join(i[0].split(os.sep)): i[0]
-		for i in os.walk('mezzanine_events')
-		if '__init__.py' in i[2]},
-	package_data={
-		'mezzanine_events': ['templates/**'],
-	},
+	packages=find_packages(),
+	include_package_data=True,
+	setup_requires=[
+		'setuptools_git>=0.3',
+	],
 	install_requires=[
 		'icalendar==3.0.1b2',
 		'geopy==0.94.2',
