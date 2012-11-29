@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 from geopy.geocoders import Google as GoogleMaps
 from geopy.geocoders.google import GQueryError
 from django.contrib.sites.models import Site
-from urllib import quote
 from datetime import timedelta, datetime as dt
 from mezzanine.utils.sites import current_site_id
 from mezzanine.conf import settings

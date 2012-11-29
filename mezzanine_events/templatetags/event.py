@@ -3,7 +3,7 @@ from django.template.defaultfilters import stringfilter
 import re
 from ..models import _get_current_domain, Event, EventContainer
 from ..lib import get_utc
-from urllib import quote
+from django.utils.http import urlquote as quote
 from mezzanine.conf import settings
 
 register = template.Library()
