@@ -47,7 +47,7 @@ class Event(Page, RichText):
 		if self.mappable_location: #location should always override lat/long if set
 			g = GoogleMaps(domain=settings.MZEVENTS_GOOGLE_MAPS_DOMAIN)
 			try:
-				location, (lat, lon) = g.geocode(self.mappable_location)
+				location, (lat, lon) = g.geocode(self.mappable_location.encode('utf-8'))
 			except GQueryError as e:
 				raise ValidationError("The mappable location you specified could not be found on {service}: \"{error}\" Try changing the mappable location, removing any business names, or leaving mappable location blank and using coordinates from getlatlon.com.".format(service="Google Maps", error=e.message))
 			self.mappable_location = location
