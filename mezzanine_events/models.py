@@ -50,6 +50,8 @@ class Event(Page, RichText):
 				location, (lat, lon) = g.geocode(self.mappable_location.encode('utf-8'))
 			except GQueryError as e:
 				raise ValidationError("The mappable location you specified could not be found on {service}: \"{error}\" Try changing the mappable location, removing any business names, or leaving mappable location blank and using coordinates from getlatlon.com.".format(service="Google Maps", error=e.message))
+			except ValueError as e:
+				raise ValidationError("The mappable location you specified could not be found on {service}: \"{error}\" Try changing the mappable location, removing any business names, or leaving mappable location blank and using coordinates from getlatlon.com.".format(service="Google Maps", error=e.message))
 			self.mappable_location = location
 			self.lat = lat
 			self.lon = lon
