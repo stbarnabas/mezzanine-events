@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import os
 from mezzanine_events import __version__
 import subprocess
 
@@ -23,6 +22,7 @@ setup(name='mezzanine-events',
 		'setuptools_git>=0.3',
 	],
 	install_requires=[
+	    'mezzanine',
 		'icalendar==3.0.1b2',
 		'geopy==0.94.2',
 		'pytz',

@@ -1,10 +1,3 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from __future__ import unicode_literals
 
 from django.test import TestCase
@@ -50,7 +43,7 @@ class EventTests (TestCase):
         self.event.clean()
         self.assertAlmostEqual(self.event.lat, -34.907924, places=5)
         self.assertAlmostEqual(self.event.lon, 138.567624, places=5)
-        self.assertEqual(self.event.mappable_location, '1 Susan St, Hindmarsh SA 5007, Australia')
+        self.assertEqual(self.event.mappable_location, '1 Susan Street, Hindmarsh SA 5007, Australia')
         
         self.unicode_event.clean()
         self.assertAlmostEqual(self.unicode_event.lat, 35.729534, places=5)
