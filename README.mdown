@@ -52,6 +52,7 @@ The following template tags and filters can be used:
 - `{{ page.event|icalendar_url }}` - Returns the URL to an iCalendar file containing this event. Upon downloading this file, most calendar software including Outlook and iCal will handle this by adding it to their calendars.
 - `{{ page.event|google_nav_url }}` - Returns the URL to a page on Google Maps showing the location .
 - `{{ google_static_map page.event <width> <height> <zoom> }}` - Produces a Google static map centred around the event location, zoomed to the specified level. Produces the entire `img` tag, not just the URL.
+- `{% for speaker in page.speakers_list %} - Iterate over the speakers listed, e.g. to put them in `<li>`s.
 
 Event pages default to being not visible in navigation, unless "show events in navigation" is checked in their parent EventContainer.
 
