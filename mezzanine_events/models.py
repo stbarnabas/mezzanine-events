@@ -2,8 +2,8 @@ from django.db import models
 from mezzanine.pages.models import Page
 from mezzanine.core.models import RichText
 from django.core.exceptions import ValidationError
-from geopy.geocoders import Google as GoogleMaps
-from geopy.geocoders.google import GQueryError
+from geopy.geocoders import GoogleV3 as GoogleMaps
+from geopy.geocoders.googlev3 import GQueryError
 from django.contrib.sites.models import Site
 from datetime import timedelta, datetime as dt
 from mezzanine.utils.sites import current_site_id
