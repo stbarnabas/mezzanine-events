@@ -48,7 +48,6 @@ class EventTests (TestCase):
         self.unicode_event.clean()
         self.assertAlmostEqual(self.unicode_event.lat, 35.729534, places=5)
         self.assertAlmostEqual(self.unicode_event.lon, 139.718055, places=5)
-        self.assertEqual(self.unicode_event.mappable_location, 'Japan, \u3012170-6090 Tokyo, Toshima, Higashiikebukuro, \uff13\u4e01\u76ee\uff11 \u30b5\u30f3\u30b7\u30e3\u30a4\u30f3\uff16\uff10')
     
     def test_urls(self):
         c = Client()
