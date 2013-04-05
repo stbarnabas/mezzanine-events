@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 from django.test.client import Client
 from .models import EventContainer, Event
+from mezzanine.core.models import CONTENT_STATUS_DRAFT, CONTENT_STATUS_PUBLISHED
 from datetime import date, time
 
 
@@ -15,6 +16,7 @@ class EventTests (TestCase):
         self.ec.save()
         self.event = Event.objects.create(
             slug='cont/blah',
+            title='THIS IS AN EVENT THAT IS PUBLISHED',
             parent=self.ec,
             date=date.today(),
             start_time=time(9),
@@ -22,8 +24,22 @@ class EventTests (TestCase):
             speakers='Fred\nJoe',
             location='1 Susan St\nHindmarsh\nSouth Australia',
             rsvp='By 31 December to aaa@bbb.com',
+            status=CONTENT_STATUS_PUBLISHED,
         )
         self.event.save()
+        self.draft_event = Event.objects.create(
+            slug='cont/draft',
+            title='THIS IS AN EVENT THAT IS A DRAFT',
+            parent=self.ec,
+            date=date.today(),
+            start_time=time(9),
+            end_time=time(17,30),
+            speakers='Fred\nJoe',
+            location='1 Susan St\nHindmarsh\nSouth Australia',
+            rsvp='By 31 December to aaa@bbb.com',
+            status=CONTENT_STATUS_DRAFT,
+        )
+        self.draft_event.save()
         self.unicode_event = Event.objects.create(
             slug='cont/\u30b5\u30f3\u30b7\u30e3\u30a4\u30f360',
             parent=self.ec,
@@ -32,6 +48,7 @@ class EventTests (TestCase):
             start_time=time(18),
             end_time=time(23,59),
             location='\u30b5\u30f3\u30b7\u30e3\u30a4\u30f360',
+            status=CONTENT_STATUS_PUBLISHED,
         )
         self.unicode_event.save()
         self.events = (self.event, self.unicode_event)
@@ -67,3 +84,9 @@ class EventTests (TestCase):
         r = c.get('/cont/calendar.ics')
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r['Content-Type'], 'text/calendar')
+    
+    def test_container(self):
+        c = Client()
+        r = c.get('/cont/')
+        self.assertContains(r, self.event.title)
+        self.assertNotContains(r, self.draft_event.title)
