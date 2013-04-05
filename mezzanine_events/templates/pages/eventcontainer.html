@@ -10,7 +10,7 @@
     </a>
 </div>
 
-{% for child in page.children.all %}
+{% for child in page.children.published %}
     <h3><a href="{{child.get_absolute_url}}">{{child.title}}</a> <small>{{child.event.date}} from {{child.event.start_time}} to {{child.event.end_time}}</small></h3>
     {{child.event.content|richtext_filter|truncatewords_html:40|safe}}
     <a href="{{child.get_absolute_url}}" class="btn">More info &rarr;</a>
