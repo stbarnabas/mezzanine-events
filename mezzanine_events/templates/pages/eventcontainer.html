@@ -10,10 +10,10 @@
     </a>
 </div>
 
-{% for child in page.children.published %}
-    <h3><a href="{{child.get_absolute_url}}">{{child.title}}</a> <small>{{child.event.date}} from {{child.event.start_time}} to {{child.event.end_time}}</small></h3>
-    {{child.event.content|richtext_filter|truncatewords_html:40|safe}}
-    <a href="{{child.get_absolute_url}}" class="btn">More info &rarr;</a>
+{% for event in page.eventcontainer.events %}
+    <h3><a href="{{event.get_absolute_url}}">{{event.title}}</a> <small>{{event.event.date}} from {{event.event.start_time}} to {{event.event.end_time}}</small></h3>
+    {{event.event.content|richtext_filter|truncatewords_html:40|safe}}
+    <a href="{{event.get_absolute_url}}" class="btn">More info &rarr;</a>
 {% endfor %}
 
 {% endblock %}

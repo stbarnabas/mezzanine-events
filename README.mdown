@@ -33,6 +33,8 @@ Create an Event Container page in the Mezzanine admin (naming it something like 
 
 ## Creating Templates
 
+In addition to the documentation here, take a look at how the default templates in the `mezzanine_events/templates` directory are written.
+
 ### Event pages
 
 The template for an Event page is `templates/pages/event.html`.
@@ -60,7 +62,7 @@ Event pages default to being not visible in navigation, unless "show events in n
 
 The template for an Event Container page is `templates/pages/eventcontainer.html`.
 
-Iterate over `page.children.all` to get at the events inside the container. You can then use all of the properties and template tags listed above on these objects.
+Iterate over `page.eventcontainer.events` to get at the events inside the container. You can then use all of the properties and template tags listed above on these objects.
 
 The template filter `{{ page.eventcontainer|icalendar_url:"webcal" }}` can be used to produce a webcal URL. When a link containing this URL is clicked, the user's default calendaring app will subscribe to events in this eventcontainer.
 

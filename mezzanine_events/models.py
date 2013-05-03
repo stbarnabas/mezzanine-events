@@ -71,7 +71,7 @@ class Event(Page, RichText):
 			self.in_menus = ""
 		
 		super(Event, self).save(*args, **kwargs)
-
+	
 	class Meta:
 		verbose_name = "Event"
 
@@ -79,3 +79,7 @@ class EventContainer (Page):
 	hide_children = models.BooleanField(default=True, verbose_name="Hide events in this container from navigation")
 	class Meta:
 		verbose_name = "Event Container"
+	
+	def events(self):
+		"""Convenience method for getting at all events in a container, in the right order, from a template."""
+		return self.children.published().order_by('_order')
