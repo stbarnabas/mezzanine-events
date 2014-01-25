@@ -12,10 +12,10 @@ admin.autodiscover()
 # to the project's homepage.
 
 urlpatterns = patterns("",
-	("^admin/", include(admin.site.urls)),
-	url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-	("^", include("mezzanine_events.urls")),
-	("^", include("mezzanine.urls")),
+    ("^admin/", include(admin.site.urls)),
+    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    ("^", include("mezzanine_events.urls")),
+    ("^", include("mezzanine.urls")),
 
 )
 
