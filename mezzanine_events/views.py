@@ -22,7 +22,7 @@ def _make_ievent(ev):
     iev.add('location', ev.location)
     iev.add('dtstamp', datetime.combine(ev.date, ev.start_time))
     iev.add('dtstart', datetime.combine(ev.date, ev.start_time))
-    iev.add('dtend', datetime.combine(ev.date, ev.end_time))
+    iev.add('dtend', datetime.combine(ev.end_date, ev.end_time))
     iev['uid'] = "event-{id}@{domain}".format(
         id=ev.id,
         domain=_get_current_domain(),
