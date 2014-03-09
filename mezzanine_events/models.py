@@ -36,6 +36,9 @@ class Event(Page, RichText):
     def clean(self):
         super(Event, self).clean()
 
+        if not self.end_date:
+            self.end_date = self.date
+
         if self.date > self.end_date:
             raise ValidationError("Start date must be sooner than end date.")
 
