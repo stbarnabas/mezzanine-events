@@ -5,6 +5,7 @@ env:
   - DJANGO_VERSION="django>=1.6,<1.6.99"
 install:
   - 'pip install $DJANGO_VERSION'
+  - 'pip install Pillow'
   - 'pip install -q -e . --use-mirrors'
 script:
   - 'cd test_project'
