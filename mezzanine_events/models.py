@@ -15,6 +15,7 @@ def _get_current_domain():
 class Event(Page, RichText):
     date = models.DateField()
     start_time = models.TimeField()
+    end_date = models.DateField()
     end_time = models.TimeField()
     speakers = models.TextField(blank=True, help_text="Leave blank if not relevant. Write one name per line.")
     location = models.TextField()
@@ -30,10 +31,19 @@ class Event(Page, RichText):
         return dt.combine(self.date, self.start_time)
 
     def end_datetime(self):
-        return dt.combine(self.date, self.end_time)
+        return dt.combine(self.end_date, self.end_time)
 
     def clean(self):
         super(Event, self).clean()
+
+        if not self.end_date:
+            self.end_date = self.date
+
+        if self.date > self.end_date:
+            raise ValidationError("Start date must be sooner than end date.")
+
+        if self.start_time > self.end_time:
+            raise ValidationError("Start time must be sooner than end time.")
 
         if self.lat and not self.lon:
             raise ValidationError("Longitude required if specifying latitude.")

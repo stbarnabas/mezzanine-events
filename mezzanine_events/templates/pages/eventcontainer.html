@@ -11,7 +11,8 @@
 </div>
 
 {% for event in page.eventcontainer.events %}
-    <h3><a href="{{event.get_absolute_url}}">{{event.title}}</a> <small>{{event.event.date}} from {{event.event.start_time}} to {{event.event.end_time}}</small></h3>
+<h3><a href="{{event.get_absolute_url}}">{{event.title}}</a> <small>From
+		{{event.event.date}}, {{event.event.start_time}} to {{event.event.end_date}}, {{event.event.end_time}}</small></h3>
     {{event.event.content|richtext_filter|truncatewords_html:40|safe}}
     <a href="{{event.get_absolute_url}}" class="btn">More info &rarr;</a>
 {% endfor %}
