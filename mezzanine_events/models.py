@@ -42,7 +42,7 @@ class Event(Page, RichText):
         if self.date > self.end_date:
             raise ValidationError("Start date must be sooner than end date.")
 
-        if self.start_time > self.end_time:
+        if self.date == self.end_date and self.start_time > self.end_time:
             raise ValidationError("Start time must be sooner than end time.")
 
         if self.lat and not self.lon:
