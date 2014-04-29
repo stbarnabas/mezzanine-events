@@ -27,6 +27,7 @@ From {{page.event.date}}, {{page.event.start_time}} to {{page.event.end_date}}, 
 			</a>
 		</address>
 	</div>
+	{% if page.event.speakers_list %}
 	<div class="span4">
 		<b>Speakers</b>
 		<address>
@@ -37,12 +38,15 @@ From {{page.event.date}}, {{page.event.start_time}} to {{page.event.end_date}}, 
 			</ul>
 		</address>
 	</div>
+	{% endif %}
+	{% if page.event.rsvp %}	
 	<div class="span4">
 		<b>RSVP</b>
 		<p>
 			{{page.event.rsvp|linebreaksbr|link_emails}}
 		</p>
 	</div>
+	{% endif %}
 </div>
 
 {{page.event.content|richtext_filter|safe}}
