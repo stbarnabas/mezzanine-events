@@ -1,3 +1,7 @@
+**This project is no longer maintained.** Do not use it for new projects.
+
+---
+
 # mezzanine-events
 
 This plugin gives you an "Event" page type for your Mezzanine sites.
